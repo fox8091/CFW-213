@@ -1,6 +1,8 @@
 #ifndef HID_H
 #define HID_H
 
+#include "types.h"
+
 #define KEY_A		(1 << 0)
 #define KEY_B		(1 << 1)
 #define KEY_Select 	(1 << 2)
