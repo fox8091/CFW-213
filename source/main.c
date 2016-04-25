@@ -38,8 +38,8 @@ void _start(void){
 	
 	FIL handle;
 	u32 br = 0;
-	void N3DSKey95[0x10] = 0;
-	void N3DSKey96[0x10] = 0;
+	u8 N3DSKey95[0x10] = { 0x00 };
+	u8 N3DSKey96[0x10] = { 0x00 };
 	if(f_open(&handle, "slot0x11key96.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
 		f_read(&handle, N3DSKey96, f_size(&handle), &br);
 		f_close(&handle);
