@@ -10,7 +10,7 @@ all:
 	mkdir -p temp
 	mv start.o temp/start.o
 	$(CC) -T 3ds.ld temp/start.o *.o 
-	$(OC) --set-section-flags .bss=alloc,load,contents -O binary a.out cfw213.bin
+	$(OC) --set-section-flags .bss=alloc,load,contents -O binary a.out CFW-213.bin
 	rm *.out *.o temp/start.o
 	rmdir temp
 clean:
