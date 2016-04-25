@@ -38,14 +38,14 @@ void _start(void){
 	
 	FIL handle;
 	u32 br = 0;
-	void N3DSKey95[0x10] = 0;
-	void N3DSKey96[0x10] = 0;
+	u8 N3DSKey95[0x10] = { 0x00 };
+	u8 N3DSKey96[0x10] = { 0x00 };
 	if(f_open(&handle, "slot0x11key96.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
-		f_read(&handle, N3DSKey96, f_size(&handle), &br);
+		f_read(&handle, N3DSKey96, 0x10, &br);
 		f_close(&handle);
 	}
 	if(f_open(&handle, "slot0x11key95.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
-		f_read(&handle, N3DSKey95, f_size(&handle), &br);
+		f_read(&handle, N3DSKey95, 0x10, &br);
 		f_close(&handle);
 	}
 	if(f_open(&handle, "firm.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
@@ -58,8 +58,8 @@ void _start(void){
 		u8 sigpatch2[0x4] = {0x00, 0x20, 0x70, 0x47};
 		
 		firm_setup(FIRM, N3DSKey95, N3DSKey96);
-		patch(FIRM, sizeof(FIRM), sigpattern1, sigpatch1, sizeof(sigpattern1), sizeof(sigpatch1));
-		patch(FIRM, sizeof(FIRM), sigpattern2, sigpatch2, sizeof(sigpattern2), sizeof(sigpatch2));
+		patch(FIRM, (unsigned int)sizeof(FIRM), sigpattern1, sigpatch1, sizeof(sigpattern1), sizeof(sigpatch1));
+		patch(FIRM, (unsigned int)sizeof(FIRM), sigpattern2, sigpatch2, sizeof(sigpattern2), sizeof(sigpatch2));
 		firmlaunch(FIRM);
 	}
 	
