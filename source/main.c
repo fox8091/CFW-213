@@ -41,11 +41,11 @@ void _start(void){
 	u8 N3DSKey95[0x10] = { 0x00 };
 	u8 N3DSKey96[0x10] = { 0x00 };
 	if(f_open(&handle, "slot0x11key96.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
-		f_read(&handle, N3DSKey96, f_size(&handle), &br);
+		f_read(&handle, N3DSKey96, 0x10, &br);
 		f_close(&handle);
 	}
 	if(f_open(&handle, "slot0x11key95.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
-		f_read(&handle, N3DSKey95, f_size(&handle), &br);
+		f_read(&handle, N3DSKey95, 0x10, &br);
 		f_close(&handle);
 	}
 	if(f_open(&handle, "firm.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
