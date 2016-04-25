@@ -14,5 +14,6 @@ all:
 	rm *.out *.o temp/start.o
 	rmdir temp
 clean:
-	rm *.out *.o temp/start.o
+	rm -rf *.out *.o temp/start.o
+	rm -rf libFirmlaunch/*.o
 	rmdir temp
