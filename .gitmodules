@@ -1,0 +1,4 @@
+[submodule "libFirmlaunch"]
+	path = libFirmlaunch
+	url = https://github.com/fox8091/libFirmlaunch.git
+	ignore = dirty
