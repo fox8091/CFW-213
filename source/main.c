@@ -41,7 +41,7 @@ void _start(void){
 	u32 br = 0;
 	u8 N3DSKey95[0x10] = { 0x00 };
 	u8 N3DSKey96[0x10] = { 0x00 };
-	u8 0x25KeyX[0x10] = { 0x00 };
+	u8 0_25KeyX[0x10] = { 0x00 };
 	if(f_open(&handle, "slot0x11key95.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
 		f_read(&handle, N3DSKey95, 0x10, &br);
 		f_close(&handle);
@@ -51,9 +51,9 @@ void _start(void){
 		f_close(&handle);
 	}
 	if(f_open(&handle, "slot0x25keyX.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
-		f_read(&handle, 0x25KeyX, 0x10, &br);
+		f_read(&handle, 0_25KeyX, 0x10, &br);
 		f_close(&handle);
-		set_keyX(0x25, 0x25KeyX);
+		set_keyX(0x25, 0_25KeyX);
 	}
 	if(f_open(&handle, "firm.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
 		f_read(&handle, FIRM, f_size(&handle), &br);
