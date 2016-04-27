@@ -6,7 +6,7 @@
 #include "arm11.h"
 #include "hid.h"
 
-#define FIRM (u32*)0x24000000
+#define FIRM ((u32*)0x24000000)
 
 void MCU_ShutDown(void){
 	i2cWriteRegister(I2C_DEV_MCU, 0x20, 1);
