@@ -1,5 +1,5 @@
-#include "../libFirmlaunch/firmlaunch.h"
-#include "../libFirmlaunch/aes.h"
+#include "libFirmlaunch/firmlaunch.h"
+#include "libFirmlaunch/aes.h"
 
 #include "fatfs/ff.h"
 #include "i2c.h"
