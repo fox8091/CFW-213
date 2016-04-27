@@ -64,8 +64,8 @@ void _start(void){
 		u8 sigpatch2[0x4] = {0x00, 0x20, 0x76, 0xE7};
 		
 		firm_setup(FIRM, N3DSKey95, N3DSKey96);
-		patch(FIRM, (unsigned int)sizeof(FIRM), sigpattern1, sigpatch1, sizeof(sigpattern1), sizeof(sigpatch1));
-		patch(FIRM, (unsigned int)sizeof(FIRM), sigpattern2, sigpatch2, sizeof(sigpattern2), sizeof(sigpatch2));
+		patch(((void*)FIRM + FIRM[0xA0/4]), FIRM[0xA8/4], sigpattern1, sigpatch1, sizeof(sigpattern1), sizeof(sigpatch1));
+		patch(((void*)FIRM + FIRM[0xA0/4]), FIRM[0xA8/4], sigpattern2, sigpatch2, sizeof(sigpattern2), sizeof(sigpatch2));
 		firmlaunch(FIRM);
 	}
 	
