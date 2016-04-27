@@ -58,14 +58,17 @@ void _start(void){
 		f_read(&handle, FIRM, f_size(&handle), &br);
 		f_close(&handle);
 		
+		u32* arm9bin = ((void*)FIRM + FIRM[0xA0/4]);
+		u32 arm9size = FIRM[0xA8/4];
+		
 		u8 sigpattern1[0x8] = {0x70, 0xB5, 0x22, 0x4D, 0x0C, 0x00, 0x69, 0x68};
 		u8 sigpattern2[0x4] = {0xC0, 0x1C, 0x76, 0xE7};
 		u8 sigpatch1[0x4] = {0x00, 0x20, 0x70, 0x47};
 		u8 sigpatch2[0x4] = {0x00, 0x20, 0x76, 0xE7};
 		
 		firm_setup(FIRM, N3DSKey95, N3DSKey96);
-		patch(((void*)FIRM + FIRM[0xA0/4]), FIRM[0xA8/4], sigpattern1, sigpatch1, sizeof(sigpattern1), sizeof(sigpatch1));
-		patch(((void*)FIRM + FIRM[0xA0/4]), FIRM[0xA8/4], sigpattern2, sigpatch2, sizeof(sigpattern2), sizeof(sigpatch2));
+		patch(arm9bin, arm9size, sigpattern1, sigpatch1, sizeof(sigpattern1), sizeof(sigpatch1));
+		patch(arm9bin, arm9size, sigpattern2, sigpatch2, sizeof(sigpattern2), sizeof(sigpatch2));
 		firmlaunch(FIRM);
 	}
 	
