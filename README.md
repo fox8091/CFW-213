@@ -2,7 +2,11 @@
 The absolute worst CFW ever. :P
 
 ## Credits
-TiniVi for patches, CFW code, and this crappy Makefile
+- TiniVi for patches, CFW code, and this crappy Makefile
+- Normmatt for sdmmc
+- ChaN for FatFs
+- Shadowtrace for repeated testing
+- CTRDev for support
 
 ## License
 All code within this repository is licensed under the included license file unless otherwise stated.
