@@ -6,7 +6,7 @@ LD=arm-none-eabi-ld
 
 all:
 	$(CC) -g source/*.c source/fatfs/*.c source/libFirmlaunch/*.c -c -march=armv5te -O2 -ffast-math -std=c99 -Wall
-	$(CC) -g source/*.s source/fatfs/*.s source/libFirmlaunch/*.c -c -march=armv5te
+	$(CC) -g source/*.s source/fatfs/*.s -c -march=armv5te
 	mkdir -p temp
 	mv start.o temp/start.o
 	$(CC) -T 3ds.ld temp/start.o *.o 
