@@ -5,6 +5,7 @@
 #include "i2c.h"
 #include "arm11.h"
 #include "hid.h"
+#include "patches.h"
 
 #define FIRM ((u32*)0x24000000)
 
@@ -64,18 +65,9 @@ void _start(void){
 		u32* arm11bin = ((void*)FIRM + FIRM[0x70/4]);
 		u32 arm11size = FIRM[0x78/4];
 		
-		u8 sigpattern1[0x8] = {0x70, 0xB5, 0x22, 0x4D, 0x0C, 0x00, 0x69, 0x68};
-		u8 sigpattern2[0x4] = {0xC0, 0x1C, 0x76, 0xE7};
-		u8 sigpatch1[0x4] = {0x00, 0x20, 0x70, 0x47};
-		u8 sigpatch2[0x4] = {0x00, 0x20, 0x76, 0xE7};
-		
-		u8 svcpattern[0x4] = {0xEA, 0xFF, 0xFF, 0x0A};
-		u8 svcpatch[0x4] = {0x00, 0xF0, 0x20, 0xE3};
-		
 		firm_setup(FIRM, N3DSKey95, N3DSKey96);
-		patch(arm9bin, arm9size, sigpattern1, sigpatch1, sizeof(sigpattern1), sizeof(sigpatch1));
-		patch(arm9bin, arm9size, sigpattern2, sigpatch2, sizeof(sigpattern2), sizeof(sigpatch2));
-		patch(arm11bin, arm11size, svcpattern, svcpatch, sizeof(svcpattern), sizeof(svcpatch));
+		patchARM9(arm9bin, arm9size);
+		patchARM11(arm11bin, arm11size);
 		firmlaunch(FIRM);
 	}
 	
