@@ -66,6 +66,22 @@ void _start(void){
 		u32 arm11size = FIRM[0x78/4];
 		
 		firm_setup(FIRM, N3DSKey95, N3DSKey96);
+		/* FIRM Partition Update (Credit to Delebile) */
+		if (!(*((vu32 *)0x101401C0) & 0x3)){ //Check for a9lh (Credit to AuroraWright)
+			u8 FIRMUpdate[] = { 0x00, 0x28, 0x01, 0xDA, 0x04, 0x00 };
+			for (u32 i = 0; i < arm9size; i+=2){
+				if (memcmp((void*)(arm9bin+i), "exe:/%016llx/.firm", 0x12) == 0){
+					for (i -= 0x100; i < FIRM[0xA8/4]; i+=2){
+						if (memcmp((void*)(arm9bin+i), &FIRMUpdate, 6) == 0){
+							*((vu16 *)(void*)(arm9bin+i)) = 0x2000;
+							*((vu16 *)(void*)(arm9bin+i+2)) = 0x46C0;
+							break;
+						}
+					}
+					break;
+				}
+			}
+		}
 		patchARM9(arm9bin, arm9size);
 		patchARM11(arm11bin, arm11size);
 		firmlaunch(FIRM);
