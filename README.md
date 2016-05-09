@@ -5,7 +5,7 @@ The absolute worst CFW ever. :P
 - TiniVi for patches, CFW code, and this crappy Makefile
 - Normmatt for sdmmc
 - ChaN for FatFs
-- Shadowtrace for repeated testing
+- Shadowtrance for repeated testing
 - CTRDev for support
 
 ## License
