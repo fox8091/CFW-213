@@ -7,6 +7,10 @@ void ARM11(void* fptr){
 	while(ARM11Entry);
 }
 
+void ARM11NoWait(void* fptr){
+	ARM11Entry = (u32)fptr;
+}
+
 void ARM11Start(void){
 	void setup(){
 		__asm__ volatile (

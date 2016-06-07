@@ -82,8 +82,9 @@ void _start(void){
 				}
 			}
 		}
+		ARM11NoWait(arm11bin, arm11size);
 		patchARM9(arm9bin, arm9size);
-		patchARM11(arm11bin, arm11size);
+		while(ARM11Entry);
 		firmlaunch(FIRM);
 	}
 	
