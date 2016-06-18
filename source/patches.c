@@ -4,6 +4,7 @@
 void patchARM9(u32* FIRM, u32 search_size){
 	cleanITCM();
 	patchSignatureChecks(FIRM, search_size);
+	restoreFirmlaunchhax(FIRM, search_size);
 	return;
 }
 
