@@ -1,5 +1,4 @@
-#ifndef HID_H
-#define HID_H
+#pragma once
 
 #include "types.h"
 
@@ -24,5 +23,3 @@
 
 u32 HIDKeyStatus(void);
 u8 HIDI2CStatus(void);
-
-#endif

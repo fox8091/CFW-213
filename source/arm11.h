@@ -1,5 +1,4 @@
-#ifndef ARM11_H
-#define ARM11_H
+#pragma once
 
 #include "types.h"
 
@@ -8,5 +7,3 @@
 void ARM11(void* fptr);
 void ARM11NoWait(void* fptr);
 void ARM11Start(void);
-
-#endif
