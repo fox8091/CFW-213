@@ -9,6 +9,12 @@
 
 #define FIRM ((u32*)0x24000000)
 
+#define arm9bin ((u32*)((void*)FIRM + FIRM[0xA0/4]))
+#define arm9size ((u32)(FIRM[0xA8/4]))
+
+#define arm11bin ((u32*)((void*)FIRM + FIRM[0x70/4]))
+#define arm11size ((u32)(FIRM[0x78/4]))
+
 void MCU_ShutDown(void){
 	i2cWriteRegister(I2C_DEV_MCU, 0x20, 1);
 	while(1);
@@ -27,7 +33,7 @@ void main_loop(void){
 	}
 }
 
-void _start(void){
+int main(void){
 	*((vu32 *)0x10000020) = 0x340; //Undocumented CONFIG Register, Allows SD/MMC Access
 	
 	FATFS sdmc;
@@ -59,12 +65,6 @@ void _start(void){
 		f_read(&handle, FIRM, f_size(&handle), &br);
 		f_close(&handle);
 		
-		u32* arm9bin = ((void*)FIRM + FIRM[0xA0/4]);
-		u32 arm9size = FIRM[0xA8/4];
-		
-		u32* arm11bin = ((void*)FIRM + FIRM[0x70/4]);
-		u32 arm11size = FIRM[0x78/4];
-		
 		firm_setup(FIRM, N3DSKey95, N3DSKey96);
 		/* FIRM Partition Update (Credit to Delebile) */
 		if (!(*((vu32 *)0x101401C0) & 0x3)){ //Check for a9lh (Credit to AuroraWright)
@@ -82,9 +82,8 @@ void _start(void){
 				}
 			}
 		}
-		ARM11NoWait(arm11bin, arm11size);
+		patchARM11(arm11bin, arm11size);
 		patchARM9(arm9bin, arm9size);
-		while(ARM11Entry);
 		firmlaunch(FIRM);
 	}
 	
