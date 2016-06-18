@@ -11,6 +11,8 @@ all:
 	@mv start.o temp/start.o
 	$(CC) -T 3ds.ld temp/start.o *.o 
 	$(OC) --set-section-flags .bss=alloc,load,contents -O binary a.out CFW-213.bin
+	@rm -rf *.out
+	@rm -rf *.o
 
 clean:
 	@rm -rf *.out *.o temp/start.o
