@@ -73,4 +73,5 @@ int main(void){
 	}
 	
 	MCU_ShutDown(); //Don't return!
+	while(1); //Safety spin!
 }
