@@ -51,10 +51,12 @@ int main(void){
 	if(f_open(&handle, "slot0x11key95.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
 		f_read(&handle, N3DSKey95, 0x10, &br);
 		f_close(&handle);
+		set_normalKey(0x11, N3DSKey95);
 	}
 	if(f_open(&handle, "slot0x11key96.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
 		f_read(&handle, N3DSKey96, 0x10, &br);
 		f_close(&handle);
+		set_normalKey(0x11, N3DSKey95);
 	}
 	if(f_open(&handle, "slot0x25keyX.bin", FA_READ | FA_OPEN_EXISTING) == FR_OK){
 		f_read(&handle, KeyX0x25, 0x10, &br);
