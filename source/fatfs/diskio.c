@@ -15,6 +15,8 @@
 #define MMC     1
 #define USB     2
 
+#define _UNUSED __attribute((unused))
+
 static DSTATUS status;
 
 /*-----------------------------------------------------------------------*/
@@ -22,7 +24,7 @@ static DSTATUS status;
 /*-----------------------------------------------------------------------*/
 
 DSTATUS disk_initialize (
-    BYTE pdrv               /* Physical drive nmuber (0..) */
+    _UNUSED BYTE pdrv               /* Physical drive nmuber (0..) */
 )
 {
     int result = sdmmc_sdcard_init();
@@ -41,7 +43,7 @@ DSTATUS disk_initialize (
 /*-----------------------------------------------------------------------*/
 
 DSTATUS disk_status (
-    BYTE pdrv       /* Physical drive nmuber (0..) */
+    _UNUSED BYTE pdrv       /* Physical drive nmuber (0..) */
 )
 {
     return status;
@@ -108,9 +110,9 @@ DRESULT disk_write (
 
 #if _USE_IOCTL
 DRESULT disk_ioctl (
-    BYTE pdrv,      /* Physical drive nmuber (0..) */
-    BYTE cmd,       /* Control code */
-    void *buff      /* Buffer to send/receive control data */
+    _UNUSED BYTE pdrv,      /* Physical drive nmuber (0..) */
+    _UNUSED BYTE cmd,       /* Control code */
+    _UNUSED void *buff      /* Buffer to send/receive control data */
 )
 {
     if (!status)

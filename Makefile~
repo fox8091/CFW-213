@@ -19,5 +19,4 @@ clean:
 	@rm -rf *.out *.o temp/start.o
 	@rm -rf libFirmlaunch/*.o
 	@rm -rf CFW-213.bin
-	@mkdir -p temp
 	@rmdir temp

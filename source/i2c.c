@@ -10,11 +10,11 @@ static const struct { u8 bus_id, reg_addr; } dev_data[] = {
     {2, 0xA4}, {2, 0x9A}, {2, 0xA0},
 };
 
-const inline u8 i2cGetDeviceBusId(u8 device_id) {
+inline u8 i2cGetDeviceBusId(u8 device_id) {
     return dev_data[device_id].bus_id;
 }
 
-const inline u8 i2cGetDeviceRegAddr(u8 device_id) {
+inline u8 i2cGetDeviceRegAddr(u8 device_id) {
     return dev_data[device_id].reg_addr;
 }
 
@@ -26,7 +26,7 @@ static vu8* const reg_data_addrs[] = {
     (vu8*)(I2C3_REG_OFF + I2C_REG_DATA),
 };
 
-inline vu8* const i2cGetDataReg(u8 bus_id) {
+inline vu8* i2cGetDataReg(u8 bus_id) {
     return reg_data_addrs[bus_id];
 }
 
@@ -38,7 +38,7 @@ static vu8* const reg_cnt_addrs[] = {
     (vu8*)(I2C3_REG_OFF + I2C_REG_CNT),
 };
 
-inline vu8* const i2cGetCntReg(u8 bus_id) {
+inline vu8* i2cGetCntReg(u8 bus_id) {
     return reg_cnt_addrs[bus_id];
 }
 
@@ -113,7 +113,7 @@ bool i2cReadRegisterBuffer(unsigned int dev_id, int reg, u8* buffer, size_t buf_
     }
 
     if (buf_size != 1) {
-        for (int i = 0; i < buf_size - 1; i++) {
+        for (size_t i = 0; i < buf_size - 1; i++) {
             i2cWaitBusy(bus_id);
             *i2cGetCntReg(bus_id) = 0xF0;
             i2cWaitBusy(bus_id);
@@ -132,7 +132,7 @@ bool i2cWriteRegister(u8 dev_id, u8 reg, u8 data) {
     u8 bus_id = i2cGetDeviceBusId(dev_id);
     u8 dev_addr = i2cGetDeviceRegAddr(dev_id);
 
-    for (int i = 0; i < 8; i++) {
+    for (size_t i = 0; i < 8; i++) {
         if (i2cSelectDevice(bus_id, dev_addr) && i2cSelectRegister(bus_id, reg)) {
             i2cWaitBusy(bus_id);
             *i2cGetDataReg(bus_id) = data;

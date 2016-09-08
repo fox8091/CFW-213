@@ -15,12 +15,12 @@ void setup(){
 	}
 }
 
-void ARM11(void* fptr){
+void ARM11(void (*fptr)()){
 	ARM11Entry = (u32)fptr;
 	while(ARM11Entry);
 }
 
-void ARM11NoWait(void* fptr){
+void ARM11NoWait(void (*fptr)()){
 	ARM11Entry = (u32)fptr;
 }
 
