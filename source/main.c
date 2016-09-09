@@ -25,17 +25,17 @@ FirmInfo initFirm(void){
 	return temp;
 }
 
-void MCU_ShutDown(void){
+void mcuShutdown(void){
 	i2cWriteRegister(I2C_DEV_MCU, 0x20, 1);
 	while(1);
 }
 
-void MCU_Reboot(void){
+void mcuReboot(void){
 	i2cWriteRegister(I2C_DEV_MCU, 0x20, 4);
 	while(1);
 }
 
-void main_loop(void){
+void mainLoop(void){
 	while(1){
 		if(HIDKeyStatus() & KEY_B) break;
 		if(HIDI2CStatus() & i2c_Power) MCU_ShutDown();
