@@ -1,4 +1,6 @@
-#Depreciated
+[![License (MIT)](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/fox8091/CFW-213/blob/master/LICENSE)
+
+# Depreciated
 
 ## CFW-213
 The absolute worst CFW ever. :P
